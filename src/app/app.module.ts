@@ -11,7 +11,8 @@ import {MatButtonModule,
   MatInputModule,
   MatCardModule,
   MatIconModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatDialogModule
   } from '@angular/material';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -24,6 +25,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { FormsModule } from '@angular/forms';
 import { HomeGuard, LoginGuard } from './LoginGuard';
+import { AddTodoDialog } from './dialogs/AddTodoDialog/AddTodoDialog';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { HomeGuard, LoginGuard } from './LoginGuard';
     LogoutComponent,
     HomeComponent,
     AboutComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AddTodoDialog
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,11 @@ import { HomeGuard, LoginGuard } from './LoginGuard';
     DragDropModule,
     MatSnackBarModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    AddTodoDialog,
   ],
   providers: [
     {provide:'apiUrl',useValue:'http://localhost:8082/api/'},

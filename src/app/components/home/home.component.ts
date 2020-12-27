@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { TodoService } from 'src/app/services/todo.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { AddTodoDialog } from 'src/app/dialogs/AddTodoDialog/AddTodoDialog';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +16,8 @@ export class HomeComponent implements OnInit {
   data={pendings:[],inProgress:[],done:[]}
 
   constructor(private todoService:TodoService,
-    private _snackBar: MatSnackBar) {
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -34,7 +37,11 @@ export class HomeComponent implements OnInit {
   }
 
   addTodo(todo){
-    const obj={todo:todo.value}
+    const dialogRef = this.dialog.open(AddTodoDialog, {
+      width: '500px',
+      
+    });
+  /*  const obj={todo:todo.value}
     this.todoService.addTodo(obj)
     .subscribe(next=>{
      // this.openSnackBar(next.message);
@@ -42,18 +49,18 @@ export class HomeComponent implements OnInit {
       this.getAllTodos()
     },error=>{
       console.log(error);
-    });
+    });*/
   }
 
   getAllTodos(){
-    this.todoService.getAllTodos()
+    /*this.todoService.getAllTodos()
     .subscribe(next=>{
       Object.keys(next).forEach(key=>{
         this.data[key]=next[key];
       })
     },error=>{
       console.log(error);
-    });
+    });*/
   }
 
   updateTodo(){
