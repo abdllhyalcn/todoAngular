@@ -1,3 +1,8 @@
+#header-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .example-container {
     width: 400px;
     max-width: 100%;
@@ -8,7 +13,12 @@
       margin-bottom:15px;
     }
   }
-  
+  #admin-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: baseline;
+  }
   .example-list {
     border: solid 1px #ccc;
     min-height: 60px;

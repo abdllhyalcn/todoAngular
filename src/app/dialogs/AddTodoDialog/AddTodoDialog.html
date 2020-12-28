@@ -1,12 +1,23 @@
-<h1 mat-dialog-title>Hi</h1>
-<div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field>
-    <mat-label>Favorite Animal</mat-label>
-    <input matInput >
-  </mat-form-field>
+<h1 mat-dialog-title>Todo Ekle</h1>
+<form (submit)="onYesClick()">
+<div mat-dialog-content id="dialog-content">
+    <mat-form-field class="example-full-width">
+      <input matInput required name="description" type="text" placeholder="Açıklama" [(ngModel)]="addTodoReq.description">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Tarih Seçiniz</mat-label>
+      <input required matInput [matDatepicker]="picker" name="date" [(ngModel)]="addTodoReq.date_todo">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-radio-group required id="radio-group" name="radio-group" [(ngModel)]="addTodoReq.status">
+      <mat-radio-button value="1"  [checked]='true'>Beklemede</mat-radio-button>
+      <mat-radio-button value="2" >Ertelendi</mat-radio-button>
+      <mat-radio-button value="3" >Tamamlandı</mat-radio-button>
+    </mat-radio-group>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button  cdkFocusInitial>Ok</button>
+<div mat-dialog-actions id="dialog-actions">
+  <button mat-button (click)="onNoClick()">İptal Et</button>
+  <button mat-raised-button color="primary" type="submit" cdkFocusInitial>Ekle</button>
 </div>
+</form>

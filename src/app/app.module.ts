@@ -12,7 +12,14 @@ import {MatButtonModule,
   MatCardModule,
   MatIconModule,
   MatSnackBarModule,
-  MatDialogModule
+  MatDialogModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatRadioButton,
+  MatRadioModule,
+  MatSelectModule,
+  MatSlideToggleModule,
+  MatFormFieldModule
   } from '@angular/material';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -26,6 +33,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { FormsModule } from '@angular/forms';
 import { HomeGuard, LoginGuard } from './LoginGuard';
 import { AddTodoDialog } from './dialogs/AddTodoDialog/AddTodoDialog';
+import { AddUserDialog } from './dialogs/addUserDialog/addUserDialog';
 
 @NgModule({
   declarations: [
@@ -35,7 +43,8 @@ import { AddTodoDialog } from './dialogs/AddTodoDialog/AddTodoDialog';
     HomeComponent,
     AboutComponent,
     NotFoundComponent,
-    AddTodoDialog
+    AddTodoDialog,
+    AddUserDialog
   ],
   imports: [
     BrowserModule,
@@ -48,16 +57,22 @@ import { AddTodoDialog } from './dialogs/AddTodoDialog/AddTodoDialog';
     MatCardModule,
     DragDropModule,
     MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSlideToggleModule,
     HttpClientModule,
     FormsModule,
     MatDialogModule
   ],
   entryComponents: [
-    AddTodoDialog,
+    AddTodoDialog, AddUserDialog
   ],
   providers: [
     {provide:'apiUrl',useValue:'http://localhost:8082/api/'},
-    LoginGuard, HomeGuard
+    LoginGuard, HomeGuard,
+    MatDatepickerModule,  
   ],
   bootstrap: [AppComponent]
 })
