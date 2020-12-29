@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Kullanıcı Ekle</h1>
+<h1 mat-dialog-title>{{headerTitle}}</h1>
 <form (submit)="onYesClick()">
   <div mat-dialog-content id="dialog-content">
     <mat-slide-toggle name="isAdmin" [(ngModel)]="addUserReq.isAdmin">Admin Yetkisi</mat-slide-toggle>
@@ -15,6 +15,6 @@
     </div>
   <div mat-dialog-actions id="dialog-actions">
     <button mat-button (click)="onNoClick()">İptal Et</button>
-    <button mat-raised-button color="primary" type="submit" cdkFocusInitial>Ekle</button>
+    <button mat-raised-button color="primary" type="submit" cdkFocusInitial>{{btnTitle}}</button>
   </div>
 </form>

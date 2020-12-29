@@ -14,9 +14,11 @@
     }
   }
   #admin-container{
+    margin-bottom: 2vh;
+    background-color: #ccc;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content:space-evenly;
     align-items: baseline;
   }
   .example-list {

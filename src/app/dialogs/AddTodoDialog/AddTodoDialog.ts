@@ -11,6 +11,8 @@ import { TodoService } from "src/app/services/todo.service";
 })
 export class AddTodoDialog {
 
+    minDate:Date=new Date();
+
     constructor(
         public dialogRef: MatDialogRef<AddTodoDialog>,
         private todoService: TodoService,
@@ -19,7 +21,7 @@ export class AddTodoDialog {
     addTodoReq: AddTodoReq = {
         description: null,
         date_todo: null,
-        status: "0"
+        status: "1"
     };
 
     onNoClick(): void {
@@ -32,18 +34,18 @@ export class AddTodoDialog {
         }
         this.todoService.addTodo(this.addTodoReq)
             .subscribe(res => {
-                this.openSnackBar("Todo başarıyla eklendi.", "Tamam");
+                this.openSnackBar("Todo başarıyla eklendi.");
                 this.dialogRef.close();
             },
                 error => {
                     console.log(error);
-                    this.openSnackBar("Hata: Todo eklerken bir hata oluştu.", "Tamam");
+                    this.openSnackBar("Hata: Todo eklerken bir hata oluştu.");
                 }
             )
     }
 
-    openSnackBar(message: string, action: "Tamam") {
-        this._snackBar.open(message, action, {
+    openSnackBar(message: string) {
+        this._snackBar.open(message, "Tamam", {
             duration: 2000,
         });
     }

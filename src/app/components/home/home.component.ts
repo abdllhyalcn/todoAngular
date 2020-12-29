@@ -13,6 +13,7 @@ import signinRes from 'src/app/models/signinResponse';
 import UserResponse from 'src/app/models/UserResponse';
 import { UserService } from 'src/app/services/user.service';
 import { AddUserDialog } from 'src/app/dialogs/addUserDialog/addUserDialog';
+import { MatSlideToggleChange } from '@angular/material';
 
 @Component({
   selector: 'app-home',
@@ -21,104 +22,90 @@ import { AddUserDialog } from 'src/app/dialogs/addUserDialog/addUserDialog';
 })
 export class HomeComponent implements OnInit {
 
-  data: { beklemede: Array<TodoRes>,
-     ertelendi: Array<TodoRes>,
-     tamamlandi: Array<TodoRes> }
-  ={beklemede:[],ertelendi:[],tamamlandi:[]};
+  data: {
+    beklemede: Array<TodoRes>,
+    ertelendi: Array<TodoRes>,
+    tamamlandi: Array<TodoRes>
+  }
+    = { beklemede: [], ertelendi: [], tamamlandi: [] };
 
   user: signinRes;
 
-  userResponse: UserResponse[]=[];
+  userResponse: UserResponse[] = [];
+
+  selectedUser: UserResponse;
+
+  adminMod:boolean=false;
+
+  selectedUserSwitch: boolean=false;
+
   constructor(private todoService: TodoService,
     private authService: AuthService,
     private userService: UserService,
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
     private router: Router) {
-      this.user=authService.getUser();
+    this.user = authService.getUser();
   }
-
 
   ngOnInit() {
-    this.getAllTodos()
-    if(this.user.roles.includes('ROLE_ADMIN')){
-      this.userService.getUsers().subscribe((res:any)=>{
-        this.userResponse=res;
-      },error=>{
-        console.log(error);
-      })
+    this.loadTodos()
+    if (this.user.roles.includes('ROLE_ADMIN')) {
+      this.adminMod=true;
+      this.getUsers();
     }
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      let updatedTodo : UpdateTodoReq={
-        todo_id: event.previousContainer.data[event.previousIndex]['id'],
-        description: event.previousContainer.data[event.previousIndex]['description'],
-        date_todo: event.previousContainer.data[event.previousIndex]['date_todo'],
-        status: event.container.id
-      }
-      this.todoService.updateTodo(updatedTodo)
-      .subscribe(next => {
-        transferArrayItem(event.previousContainer.data,
-          event.container.data,
-          event.previousIndex,
-          event.currentIndex);
-      }, error => {
-        console.log(error);
-        this.openSnackBar("Hata: Todo statüsü değiştirilemedi.", "Tamam");
-      })
+  contentFormat = (item: TodoRes): string=>{
+    return item.description + ' : ' + new Date(item.date_todo).toLocaleDateString();
+  }
+
+  selectionChange(event){
+    this.loadTodos()
+  }
+
+  loadTodos(){
+    if(this.selectedUserSwitch){
+      this.getUserTodos();
+    }else{
+      this.getAllTodos();
     }
+  }
+
+  getAllTodos() {
+    this.data= this.todoService.getAllTodos()
+  }
+
+  getUserTodos(){
+    this.data = this.todoService.getUserTodos(this.selectedUser.id);
   }
 
   addTodo() {
     const dialogRef = this.dialog.open(AddTodoDialog, {
       width: '500px',
     });
-    dialogRef.afterClosed().subscribe(next=>{
-      this.getAllTodos();
+    dialogRef.afterClosed().subscribe(next => {
+      this.loadTodos();
     })
   }
 
-  getAllTodos() {
-    this.data = {beklemede:[],ertelendi:[],tamamlandi:[]};
-    this.todoService.getAllTodos()
-      .subscribe((response : any ) => {
-        response.forEach(element => {
-          switch (element.status) {
-            case 1:
-              this.data.beklemede.push(element)
-              break;
-            case 2:
-              this.data.ertelendi.push(element)
-              break;
-            case 3:
-              this.data.tamamlandi.push(element)
-              break;
-          }
-        });
-      }, error => {
-        console.log(error);
-      });
-
-  }
-
-  removeTodo(id) {
+  removeTodo(id:number) {
+    if(this.selectedUserSwitch){
+      this.openSnackBar("Başka kullanıcı Todo'ları düzenlenemez!")
+      return;
+    }
     if (!confirm('Bu maddeyi silmek istediğinize emin misiniz?')) {
       return;
     }
     this.todoService.removeTodo(id)
       .subscribe(next => {
-        console.log(next);
-        this.getAllTodos();
+        this.loadTodos();
       }, error => {
         console.log(error);
       })
   }
 
-  signUp(){
+  signOut() {
     if (!confirm('Çıkış yapmak istediğinize emin misiniz?')) {
       return;
     }
@@ -126,19 +113,89 @@ export class HomeComponent implements OnInit {
     this.router.navigate(["login"]);
   }
 
-  addUser(){
-    const dialogRef = this.dialog.open(AddUserDialog, {
-      width: '300px',
-    });
-    dialogRef.afterClosed().subscribe(next=>{
-      this.getAllTodos();
+  getUsers() {
+    this.userService.getUsers().subscribe((res: any) => {
+      this.userResponse = res;
+      this.selectedUser = res[0]
+    }, error => {
+      console.log(error);
     })
   }
 
-  openSnackBar(message: string, action: "Tamam") {
-    this._snackBar.open(message, action, {
+  addUser() {
+    const dialogRef = this.dialog.open(AddUserDialog, {
+      data:{
+        user: null
+      },
+      width: '300px',
+    });
+    dialogRef.afterClosed().subscribe(next => {
+      this.getUsers();
+    })
+  }
+
+  updateUser() {
+    const dialogRef = this.dialog.open(AddUserDialog, {
+      data: {
+        user: this.selectedUser
+      },
+      width: "300px"
+    });
+    dialogRef.afterClosed().subscribe(next => {
+      this.getUsers();
+    })
+  }
+
+  deleteUser() {
+    if (!confirm(this.selectedUser.username + ' kullanıcısını silmek istediğinize emin misiniz?')) {
+      return;
+    }
+    this.userService.deleteUser(this.selectedUser.id)
+      .subscribe(next => {
+        this.openSnackBar("Kullanıcı başarıyla silindi");
+        this.getUsers();
+        this.loadTodos();
+      }, error => {
+        console.log(error);
+      })
+  }
+
+  toggle(event: MatSlideToggleChange) {
+    this.selectedUserSwitch = event.checked;
+    this.loadTodos()
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, "Tamam", {
       duration: 2000,
     });
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    if(this.selectedUserSwitch){
+      this.openSnackBar("Başka kullanıcı Todo'ları düzenlenemez!");
+      return;
+    }
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      let updatedTodo: UpdateTodoReq = {
+        todo_id: event.previousContainer.data[event.previousIndex]['id'],
+        description: event.previousContainer.data[event.previousIndex]['description'],
+        date_todo: event.previousContainer.data[event.previousIndex]['date_todo'],
+        status: event.container.id
+      }
+      this.todoService.updateTodo(updatedTodo)
+        .subscribe(next => {
+          transferArrayItem(event.previousContainer.data,
+            event.container.data,
+            event.previousIndex,
+            event.currentIndex);
+        }, error => {
+          console.log(error);
+          this.openSnackBar("Hata: Todo statüsü değiştirilemedi.");
+        })
+    }
   }
 
 

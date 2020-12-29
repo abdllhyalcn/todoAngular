@@ -8,28 +8,39 @@
         </h2>
       </div>
       <div>
-        <button mat-raised-button color="secondary" type="button" (click)="signUp()">Çıkış Yap</button>
+        <button mat-raised-button color="secondary" type="button" (click)="signOut()">Çıkış Yap</button>
       </div>
     </div>
     <div class="row mt-4">
-      <div class="col-md-12">
+      <div class="col-md-12" >
         <div class="col mb-2 ml-2">
-          <div id="admin-container">
-            <button mat-raised-button color="primary" type="button" (click)="addUser()">Kullanıcı Ekle</button>
-            <mat-form-field class="ml-2">
-              <mat-label>Kullanıcılar</mat-label>
-              <mat-select>
-                <mat-option *ngFor="let user of userResponse" [value]="user.id">
-                  {{user.username}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <button mat-icon-button (click)="deleteUser()">
-              <mat-icon>delete</mat-icon>
-            </button>
+          <div id="admin-container" *ngIf="adminMod">
+            <div>
+              <mat-slide-toggle class="ml-2" [(ngModel)]="selectedUserSwitch" (change)="toggle($event)">Seçili kullanıcı listesi</mat-slide-toggle>
+            </div>
+            <div>
+              <button mat-icon-button color="primary" (click)="addUser()">
+                <mat-icon>add</mat-icon>
+              </button>
+              <mat-form-field class="ml-2">
+                <mat-label>Kullanıcılar</mat-label>
+                <mat-select [(ngModel)]="selectedUser" (selectionChange)="selectionChange($event)">
+                  <mat-option *ngFor="let user of userResponse" [value]="user">
+                    {{user.username}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <button mat-icon-button (click)="updateUser()">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <button mat-icon-button color="secondary" (click)="deleteUser()">
+                <mat-icon>delete</mat-icon>
+              </button>
+
+            </div>
+
           </div>
-          <button mat-raised-button color="primary" type="button" (click)="addTodo()">Todo Ekle</button>
-          <mat-slide-toggle class="ml-2">Seçili kullanıcı bilgisini getir</mat-slide-toggle>
+          <button [disabled]="selectedUserSwitch" mat-raised-button color="primary" type="button" (click)="addTodo()">Todo Ekle</button>
         </div>
         <mat-card class="d-flex">
           <div class="example-container">
@@ -39,7 +50,7 @@
               [cdkDropListConnectedTo]="['2']" class="example-list" (cdkDropListDropped)="drop($event)">
               <div class="example-box" *ngFor="let item of data.beklemede" cdkDrag>
                 <img class="svg" src="assets/svg/clock.svg" />
-                <span class="todo-title">{{item.description}}</span>
+                <span class="todo-title" [textContent]="contentFormat(item)"></span>
 
                 <button class="button" mat-icon-button color="warn" (click)="removeTodo(item.id)">
                   <mat-icon>delete</mat-icon>
@@ -57,7 +68,7 @@
               [cdkDropListConnectedTo]="['1', '3']" class="example-list" (cdkDropListDropped)="drop($event)">
               <div class="example-box" *ngFor="let item of data.ertelendi" cdkDrag>
                 <img class="svg" src="assets/svg/hourglass.svg" />
-                <span class="todo-title">{{item.description}}</span>
+                <span class="todo-title" [textContent]="contentFormat(item)"></span>
 
                 <button class="button" mat-icon-button color="warn" (click)="removeTodo(item.id)">
                   <mat-icon>delete</mat-icon>
@@ -74,7 +85,7 @@
               [cdkDropListConnectedTo]="['2']" class="example-list" (cdkDropListDropped)="drop($event)">
               <div class="example-box" *ngFor="let item of data.tamamlandi" cdkDrag>
                 <img class="svg" src="assets/svg/like.svg" />
-                <span class="todo-title">{{item.description}}</span>
+                <span class="todo-title" [textContent]="contentFormat(item)"></span>
 
                 <button class="button" mat-icon-button color="warn" (click)="removeTodo(item.id)">
                   <mat-icon>delete</mat-icon>
