@@ -70,7 +70,7 @@ import { AddUserDialog } from './dialogs/addUserDialog/addUserDialog';
     AddTodoDialog, AddUserDialog
   ],
   providers: [
-    {provide:'apiUrl',useValue:'http://localhost:8082/api/'},
+    {provide:'apiUrl',useValue:'https://todo-spring-apps.herokuapp.com/api/'},
     LoginGuard, HomeGuard,
     MatDatepickerModule,  
   ],
