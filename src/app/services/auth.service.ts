@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
-import signing from "../models/signinRequest";
-import signinRes from "../models/signinResponse";
+import SigninReq from "../models/SigninReq";
+import SigninRes from "../models/SigninRes";
 
 @Injectable({
     providedIn: 'root'
@@ -12,12 +12,12 @@ export class AuthService {
         @Inject('apiUrl') private apiUrl, private http: HttpClient) {
     }
 
-    loginReq(signin: signing) {
-        return this.http.post<signinRes>(this.apiUrl + 'auth/signin', signin)
+    loginReq(signin: SigninReq) {
+        return this.http.post<SigninRes>(this.apiUrl + 'auth/signin', signin)
         
     }
 
-    saveUser(signinRes: signinRes) {
+    saveUser(signinRes: SigninRes) {
         sessionStorage.setItem('user', JSON.stringify(signinRes));
     }
 
@@ -25,7 +25,7 @@ export class AuthService {
         sessionStorage.removeItem('user');
     }
 
-    getUser(): signinRes{
+    getUser(): SigninRes{
         return JSON.parse(sessionStorage.getItem('user'));
     }
 

@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
 import AddUserReq from "../models/AddUserReq";
-import signinRes from "../models/signinResponse";
+import SigninRes from "../models/SigninRes";
 import UpdateUserReq from "../models/UpdateUserReq";
-import UserResponse from "../models/UserResponse";
+import UserRes from "../models/UserRes";
 import { AuthService } from "./auth.service";
 
 @Injectable({
@@ -11,7 +11,7 @@ import { AuthService } from "./auth.service";
 })
 export class UserService {
 
-    private user: signinRes;
+    private user: SigninRes;
     private HTTP_OPTIONS;
 
     constructor(
@@ -31,7 +31,7 @@ export class UserService {
     }
  
     getUsers() {
-        return this.http.get<UserResponse[]>(this.apiUrl + "user/getUsers", this.HTTP_OPTIONS)
+        return this.http.get<UserRes[]>(this.apiUrl + "user/getUsers", this.HTTP_OPTIONS)
     }
 
     addUser(obj: AddUserReq) {

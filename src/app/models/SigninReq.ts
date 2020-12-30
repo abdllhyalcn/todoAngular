@@ -1,4 +1,4 @@
-export default interface signing{
+export default interface SigninReq{
     username: String,
     password: String
 }

@@ -5,14 +5,14 @@ import { TodoService } from 'src/app/services/todo.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTodoDialog } from 'src/app/dialogs/AddTodoDialog/AddTodoDialog';
-import TodoRes from 'src/app/models/todoRes';
+import TodoRes from 'src/app/models/TodoRes';
 import UpdateTodoReq from 'src/app/models/UpdateTodoReq';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import signinRes from 'src/app/models/signinResponse';
-import UserResponse from 'src/app/models/UserResponse';
+import SigninRes from 'src/app/models/SigninRes';
+import UserRes from 'src/app/models/UserRes';
 import { UserService } from 'src/app/services/user.service';
-import { AddUserDialog } from 'src/app/dialogs/addUserDialog/addUserDialog';
+import { AddUserDialog } from 'src/app/dialogs/addUserDialog/AddUserDialog';
 import { MatSlideToggleChange } from '@angular/material';
 
 @Component({
@@ -29,11 +29,11 @@ export class HomeComponent implements OnInit {
   }
     = { beklemede: [], ertelendi: [], tamamlandi: [] };
 
-  user: signinRes;
+  user: SigninRes;
 
-  userResponse: UserResponse[] = [];
+  userResponse: UserRes[] = [];
 
-  selectedUser: UserResponse;
+  selectedUser: UserRes;
 
   adminMod:boolean=false;
 

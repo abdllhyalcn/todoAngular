@@ -33,7 +33,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { FormsModule } from '@angular/forms';
 import { HomeGuard, LoginGuard } from './LoginGuard';
 import { AddTodoDialog } from './dialogs/AddTodoDialog/AddTodoDialog';
-import { AddUserDialog } from './dialogs/addUserDialog/addUserDialog';
+import { AddUserDialog } from './dialogs/addUserDialog/AddUserDialog';
 
 @NgModule({
   declarations: [

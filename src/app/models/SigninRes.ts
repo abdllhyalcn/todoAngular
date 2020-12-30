@@ -1,6 +1,6 @@
 import { logging } from "protractor";
 
-export default interface signinRes{
+export default interface SigninRes{
     id: Int32Array,
     username: string,
     email: string,

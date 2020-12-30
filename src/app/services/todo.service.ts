@@ -1,10 +1,10 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import signing from '../models/signinRequest';
-import signinRes from '../models/signinResponse';
+import SigninReq from '../models/SigninReq';
+import SigninRes from '../models/SigninRes';
 import { AuthService } from './auth.service';
 import AddTodoReq from '../models/AddTodoReq';
-import TodoRes from '../models/todoRes';
+import TodoRes from '../models/TodoRes';
 import UpdateTodo from '../models/UpdateTodoReq';
 import UpdateTodoReq from '../models/UpdateTodoReq';
 
@@ -13,7 +13,7 @@ import UpdateTodoReq from '../models/UpdateTodoReq';
 })
 export class TodoService {
 
-  private user: signinRes;
+  private user: SigninRes;
   private HTTP_OPTIONS;
   constructor(
     @Inject('apiUrl') private apiUrl, private http: HttpClient) {

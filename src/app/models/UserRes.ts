@@ -1,4 +1,4 @@
-export default interface UserResponse{
+export default interface UserRes{
     id: number,
     username: string,
     email: string,

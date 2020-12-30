@@ -3,7 +3,7 @@ import { MatSnackBar } from "@angular/material";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import AddUserReq from "src/app/models/AddUserReq";
 import UpdateUserReq from "src/app/models/UpdateUserReq";
-import UserResponse from "src/app/models/UserResponse";
+import UserRes from "src/app/models/UserRes";
 import { UserService } from "src/app/services/user.service";
 
 @Component({
@@ -13,7 +13,7 @@ import { UserService } from "src/app/services/user.service";
 })
 export class AddUserDialog implements OnInit {
 
-    selectedUser: UserResponse;
+    selectedUser: UserRes;
     constructor(
         public dialogRef: MatDialogRef<AddUserDialog>,
         private userService: UserService,
