@@ -15,21 +15,17 @@ import {MatButtonModule,
   MatDialogModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatRadioButton,
   MatRadioModule,
   MatSelectModule,
   MatSlideToggleModule,
-  MatFormFieldModule
   } from '@angular/material';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import { HomeComponent } from './components/home/home.component';
-import { AboutComponent } from './components/about/about.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
-import { LogoutComponent } from './components/logout/logout.component';
 import { FormsModule } from '@angular/forms';
 import { HomeGuard, LoginGuard } from './LoginGuard';
 import { AddTodoDialog } from './dialogs/AddTodoDialog/AddTodoDialog';
@@ -39,9 +35,7 @@ import { AddUserDialog } from './dialogs/addUserDialog/AddUserDialog';
   declarations: [
     AppComponent,
     LoginComponent,
-    LogoutComponent,
     HomeComponent,
-    AboutComponent,
     NotFoundComponent,
     AddTodoDialog,
     AddUserDialog
