@@ -38,7 +38,7 @@ import { AddUserDialog } from './dialogs/AddUserDialog/AddUserDialog';
     HomeComponent,
     NotFoundComponent,
     AddTodoDialog,
-    AddUserDialog
+    AddUserDialog,
   ],
   imports: [
     BrowserModule,

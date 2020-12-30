@@ -1,11 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import SigninReq from '../models/SigninReq';
 import SigninRes from '../models/SigninRes';
 import { AuthService } from './auth.service';
 import AddTodoReq from '../models/AddTodoReq';
 import TodoRes from '../models/TodoRes';
-import UpdateTodo from '../models/UpdateTodoReq';
 import UpdateTodoReq from '../models/UpdateTodoReq';
 
 @Injectable({
