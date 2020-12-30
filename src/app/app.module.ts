@@ -39,7 +39,7 @@ import AddUserDialog from './dialogs/AddUserDialog/AddUserDialog';
     HomeComponent,
     NotFoundComponent,
     AddTodoDialog,
-    AddUserDialog,
+    AddUserDialog
   ],
   imports: [
     BrowserModule,
@@ -67,7 +67,7 @@ import AddUserDialog from './dialogs/AddUserDialog/AddUserDialog';
   providers: [
     { provide: 'apiUrl', useValue: 'https://todo-spring-apps.herokuapp.com/api/' },
     LoginGuard, HomeGuard,
-    MatDatepickerModule,
+    MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })
