@@ -1,36 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import {
-  MatButtonModule,
-  MatCheckboxModule,
-  MatInputModule,
-  MatCardModule,
-  MatIconModule,
-  MatSnackBarModule,
-  MatDialogModule,
-  MatDatepickerModule,
-  MatNativeDateModule,
-  MatRadioModule,
-  MatSelectModule,
-  MatSlideToggleModule,
-} from '@angular/material';
-
-import { DragDropModule } from '@angular/cdk/drag-drop';
-
-import HomeComponent from './components/home/home.component';
-import NotFoundComponent from './components/not-found/not-found.component';
-import { HttpClientModule } from '@angular/common/http';
-import LoginComponent from './components/login/login.component';
-import { FormsModule } from '@angular/forms';
-import { HomeGuard, LoginGuard } from './LoginGuard';
-import AddTodoDialog from './dialogs/AddTodoDialog/AddTodoDialog';
-import AddUserDialog from './dialogs/AddUserDialog/AddUserDialog';
+import { DragDropModule } from "@angular/cdk/drag-drop";
+import { HttpClientModule } from "@angular/common/http";
+import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { MatButtonModule, MatIconModule, MatCheckboxModule, MatInputModule, MatCardModule, MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatSelectModule, MatSlideToggleModule, MatDialogModule } from "@angular/material";
+import { BrowserModule } from "@angular/platform-browser";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import HomeComponent from "./components/home/home.component";
+import LoginComponent from "./components/login/login.component";
+import NotFoundComponent from "./components/not-found/not-found.component";
+import AddTodoDialog from "./dialogs/AddTodoDialog/AddTodoDialog";
+import AddUserDialog from "./dialogs/AddUserDialog/AddUserDialog";
+import { LoginGuard, HomeGuard } from "./LoginGuard";
 
 @NgModule({
   declarations: [
@@ -44,7 +25,6 @@ import AddUserDialog from './dialogs/AddUserDialog/AddUserDialog';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
     MatCheckboxModule,
