@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadTodos() {
-    if (this.selectedUserSwitch) {
+    if (this.selectedUserSwitch&&this.adminMod) {
       this.getUserTodos();
     } else {
       this.getAllTodos();
@@ -161,7 +161,7 @@ export class HomeComponent implements OnInit {
   }
 
   toggle(event: MatSlideToggleChange) {
-    this.selectedUserSwitch = event.checked;
+   
     this.loadTodos()
   }
 
