@@ -4,9 +4,10 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MatButtonModule, 
+import {
+  MatButtonModule,
   MatCheckboxModule,
   MatInputModule,
   MatCardModule,
@@ -18,18 +19,18 @@ import {MatButtonModule,
   MatRadioModule,
   MatSelectModule,
   MatSlideToggleModule,
-  } from '@angular/material';
+} from '@angular/material';
 
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
-import { HomeComponent } from './components/home/home.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
+import HomeComponent from './components/home/home.component';
+import NotFoundComponent from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginComponent } from './components/login/login.component';
+import LoginComponent from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HomeGuard, LoginGuard } from './LoginGuard';
-import { AddTodoDialog } from './dialogs/AddTodoDialog/AddTodoDialog';
-import { AddUserDialog } from './dialogs/AddUserDialog/AddUserDialog';
+import AddTodoDialog from './dialogs/AddTodoDialog/AddTodoDialog';
+import AddUserDialog from './dialogs/AddUserDialog/AddUserDialog';
 
 @NgModule({
   declarations: [
@@ -64,9 +65,9 @@ import { AddUserDialog } from './dialogs/AddUserDialog/AddUserDialog';
     AddTodoDialog, AddUserDialog
   ],
   providers: [
-    {provide:'apiUrl',useValue:'https://todo-spring-apps.herokuapp.com/api/'},
+    { provide: 'apiUrl', useValue: 'https://todo-spring-apps.herokuapp.com/api/' },
     LoginGuard, HomeGuard,
-    MatDatepickerModule,  
+    MatDatepickerModule,
   ],
   bootstrap: [AppComponent]
 })

@@ -2,16 +2,16 @@ import { Component } from "@angular/core";
 import { MatDatepicker, MatSnackBar } from "@angular/material";
 import { MatDialogRef } from "@angular/material/dialog";
 import AddTodoReq from "src/app/models/AddTodoReq";
-import { TodoService } from "src/app/services/todo.service";
+import TodoService from "src/app/services/todo.service";
 
 @Component({
     selector: 'AddTodoDialog',
     templateUrl: './AddTodoDialog.html',
     styleUrls: ['./AddTodoDialog.scss']
 })
-export class AddTodoDialog {
+export default class AddTodoDialog {
 
-    minDate:Date=new Date();
+    minDate: Date = new Date();
 
     constructor(
         public dialogRef: MatDialogRef<AddTodoDialog>,

@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>{{headerTitle}}</h1>
+<form (submit)="onYesClick()">
+  <div mat-dialog-content id="dialog-content">
+    <mat-slide-toggle name="isAdmin" [(ngModel)]="addUserReq.isAdmin">Admin Yetkisi</mat-slide-toggle>
+    <mat-form-field>
+      <input matInput required name="username" type="text" placeholder="Kullanıcı Adı"
+        [(ngModel)]="addUserReq.username">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput min="6" required name="email" type="text" placeholder="E-mail" [(ngModel)]="addUserReq.email">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput required name="password" type="password" placeholder="Şifre" [(ngModel)]="addUserReq.password">
+    </mat-form-field>
+    </div>
+  <div mat-dialog-actions id="dialog-actions">
+    <button mat-button (click)="onNoClick()">İptal Et</button>
+    <button mat-raised-button color="primary" type="submit" cdkFocusInitial>{{btnTitle}}</button>
+  </div>
+</form>

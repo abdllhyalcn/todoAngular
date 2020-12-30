@@ -6,7 +6,7 @@ import SigninRes from "../models/SigninRes";
 @Injectable({
     providedIn: 'root'
 })
-export class AuthService {
+export default class AuthService {
 
     constructor(
         @Inject('apiUrl') private apiUrl, private http: HttpClient) {

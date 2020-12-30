@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { MatSnackBar } from "@angular/material";
 import { Router } from "@angular/router";
-import { AuthService } from "src/app/services/auth.service";
+import AuthService from "src/app/services/auth.service";
 
 
 @Component({
@@ -9,7 +9,7 @@ import { AuthService } from "src/app/services/auth.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export default class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService,
     private _snackBar: MatSnackBar, private router: Router) {
@@ -27,11 +27,11 @@ export class LoginComponent implements OnInit {
       password: this.password
     }
 
-    this.authService.loginReq(singin).subscribe(res=>{
+    this.authService.loginReq(singin).subscribe(res => {
       this.authService.saveUser(res);
       this.openSnackBar("Giriş başarılı.", "Tamam");
       setTimeout(() => this.router.navigate(['/home']), 2000);
-    }, error=>{
+    }, error => {
       this.openSnackBar("Hata: Girdiğiniz bilgileri kontrol ediniz!", "Tamam");
     })
   }

@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import SigninRes from '../models/SigninRes';
-import { AuthService } from './auth.service';
+import AuthService from './auth.service';
 import AddTodoReq from '../models/AddTodoReq';
 import TodoRes from '../models/TodoRes';
 import UpdateTodoReq from '../models/UpdateTodoReq';
@@ -9,7 +9,7 @@ import UpdateTodoReq from '../models/UpdateTodoReq';
 @Injectable({
   providedIn: 'root'
 })
-export class TodoService {
+export default class TodoService {
 
   private user: SigninRes;
   private HTTP_OPTIONS;

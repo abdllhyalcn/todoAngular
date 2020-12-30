@@ -4,12 +4,12 @@ import AddUserReq from "../models/AddUserReq";
 import SigninRes from "../models/SigninRes";
 import UpdateUserReq from "../models/UpdateUserReq";
 import UserRes from "../models/UserRes";
-import { AuthService } from "./auth.service";
+import AuthService from "./auth.service";
 
 @Injectable({
     providedIn: 'root'
 })
-export class UserService {
+export default class UserService {
 
     private user: SigninRes;
     private HTTP_OPTIONS;
@@ -29,7 +29,7 @@ export class UserService {
 
         };
     }
- 
+
     getUsers() {
         return this.http.get<UserRes[]>(this.apiUrl + "user/getUsers", this.HTTP_OPTIONS)
     }
@@ -55,8 +55,8 @@ export class UserService {
         return this.http.delete(this.apiUrl + "user/deleteUser", options);
     }
 
-    updateUser(obj: UpdateUserReq){
-        return this.http.post(this.apiUrl+"user/updateUser", obj, this.HTTP_OPTIONS);
+    updateUser(obj: UpdateUserReq) {
+        return this.http.post(this.apiUrl + "user/updateUser", obj, this.HTTP_OPTIONS);
     }
 
 }
