@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
 import SigninReq from "../models/SigninReq";
 import SigninRes from "../models/SigninRes";

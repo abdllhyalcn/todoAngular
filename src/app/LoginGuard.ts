@@ -1,17 +1,17 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot } from "@angular/router";
-import { AuthService } from "./services/auth.service";
+import AuthService from "./services/auth.service";
 
 @Injectable()
 export class LoginGuard implements CanActivate {
   constructor(private authService: AuthService,
-     private router: Router) {}
+    private router: Router) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    let logged:boolean = this.authService.getUser()!=null?true:false;
+    let logged: boolean = this.authService.getUser() != null ? true : false;
 
     if (logged) {
       return true;
@@ -24,13 +24,13 @@ export class LoginGuard implements CanActivate {
 @Injectable()
 export class HomeGuard implements CanActivate {
   constructor(private authService: AuthService,
-     private router: Router) {}
+    private router: Router) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    let logged:boolean = this.authService.getUser()!=null?true:false;
+    let logged: boolean = this.authService.getUser() != null ? true : false;
 
     if (logged) {
       this.router.navigate(["home"]);
