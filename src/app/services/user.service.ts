@@ -4,12 +4,12 @@ import AddUserReq from "../models/AddUserReq";
 import SigninRes from "../models/SigninRes";
 import UpdateUserReq from "../models/UpdateUserReq";
 import UserRes from "../models/UserRes";
-import AuthService from "./auth.service";
+import { AuthService } from "./auth.service";
 
 @Injectable({
     providedIn: 'root'
 })
-export default class UserService {
+export class UserService {
 
     private user: SigninRes;
     private HTTP_OPTIONS;

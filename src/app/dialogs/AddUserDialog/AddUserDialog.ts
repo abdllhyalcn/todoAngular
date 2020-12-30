@@ -4,14 +4,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import AddUserReq from "src/app/models/AddUserReq";
 import UpdateUserReq from "src/app/models/UpdateUserReq";
 import UserRes from "src/app/models/UserRes";
-import UserService from "src/app/services/user.service";
+import { UserService } from "src/app/services/user.service";
 
 @Component({
     selector: 'AddUserDialog',
     templateUrl: './AddUserDialog.html',
     styleUrls: ['./AddUserDialog.scss']
 })
-export default class AddUserDialog implements OnInit {
+export class AddUserDialog implements OnInit {
 
     selectedUser: UserRes;
     constructor(

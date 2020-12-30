@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import TodoService from 'src/app/services/todo.service';
+import { TodoService } from 'src/app/services/todo.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import AddTodoDialog from 'src/app/dialogs/AddTodoDialog/AddTodoDialog';
+import { AddTodoDialog } from 'src/app/dialogs/AddTodoDialog/AddTodoDialog';
 import TodoRes from 'src/app/models/TodoRes';
 import UpdateTodoReq from 'src/app/models/UpdateTodoReq';
-import AuthService from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import SigninRes from 'src/app/models/SigninRes';
 import UserRes from 'src/app/models/UserRes';
-import UserService from 'src/app/services/user.service';
-import AddUserDialog from 'src/app/dialogs/AddUserDialog/AddUserDialog';
+import { UserService } from 'src/app/services/user.service';
+import { AddUserDialog } from 'src/app/dialogs/AddUserDialog/AddUserDialog';
 import { MatSlideToggleChange } from '@angular/material';
 
 @Component({
@@ -20,7 +20,7 @@ import { MatSlideToggleChange } from '@angular/material';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export default class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   data: {
     beklemede: Array<TodoRes>,

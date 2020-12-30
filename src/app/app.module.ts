@@ -2,15 +2,27 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { MatButtonModule, MatIconModule, MatCheckboxModule, MatInputModule, MatCardModule, MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatSelectModule, MatSlideToggleModule, MatDialogModule } from "@angular/material";
+import { 
+  MatButtonModule, 
+  MatIconModule, 
+  MatCheckboxModule, 
+  MatInputModule, 
+  MatCardModule, 
+  MatSnackBarModule, 
+  MatDatepickerModule, 
+  MatNativeDateModule, 
+  MatRadioModule, 
+  MatSelectModule, 
+  MatSlideToggleModule, 
+  MatDialogModule } from "@angular/material";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import HomeComponent from "./components/home/home.component";
-import LoginComponent from "./components/login/login.component";
-import NotFoundComponent from "./components/not-found/not-found.component";
-import AddTodoDialog from "./dialogs/AddTodoDialog/AddTodoDialog";
-import AddUserDialog from "./dialogs/AddUserDialog/AddUserDialog";
+import { HomeComponent } from "./components/home/home.component";
+import { LoginComponent } from "./components/login/login.component";
+import { NotFoundComponent } from "./components/not-found/not-found.component";
+import { AddTodoDialog } from "./dialogs/AddTodoDialog/AddTodoDialog";
+import { AddUserDialog } from "./dialogs/AddUserDialog/AddUserDialog";
 import { LoginGuard, HomeGuard } from "./LoginGuard";
 
 @NgModule({
@@ -51,4 +63,4 @@ import { LoginGuard, HomeGuard } from "./LoginGuard";
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule{}
