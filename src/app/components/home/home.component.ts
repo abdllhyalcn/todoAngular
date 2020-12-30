@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import SigninRes from 'src/app/models/SigninRes';
 import UserRes from 'src/app/models/UserRes';
 import { UserService } from 'src/app/services/user.service';
-import { AddUserDialog } from 'src/app/dialogs/addUserDialog/AddUserDialog';
+import { AddUserDialog } from 'src/app/dialogs/AddUserDialog/AddUserDialog';
 import { MatSlideToggleChange } from '@angular/material';
 
 @Component({

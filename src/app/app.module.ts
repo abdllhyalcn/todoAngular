@@ -29,7 +29,7 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HomeGuard, LoginGuard } from './LoginGuard';
 import { AddTodoDialog } from './dialogs/AddTodoDialog/AddTodoDialog';
-import { AddUserDialog } from './dialogs/addUserDialog/AddUserDialog';
+import { AddUserDialog } from './dialogs/AddUserDialog/AddUserDialog';
 
 @NgModule({
   declarations: [
