@@ -6,3 +6,5 @@ It's Angular app integrated with Spring Endpoints.
 
 App has a login page for authentication to Spring server. 
 If you are admin, you have add/update/delete operations for users. Also, have ability to monitor other user's todo list.
+
+Repo is running at https://todo-angular-app.herokuapp.com/
